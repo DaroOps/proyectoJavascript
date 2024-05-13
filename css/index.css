@@ -12,6 +12,7 @@ body {
   background-color: var(--background-base);
   gap: .5rem;
   padding: .5rem;
+  overflow-y: hidden;
 }
 
 .discover{
@@ -19,6 +20,7 @@ body {
   height: 100%;
   width: 25%; 
   border-radius: 1rem;
+  overflow-y: auto;
 }
 
 .discover h1{
@@ -58,5 +60,14 @@ body {
   font-family: var(--encore-title-font-stack);
 }
 
+.discover h4{
+  padding: 0 2rem;
+  font-size: 1.5rem;
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+  
+}
 
+
+/* test component */
 
