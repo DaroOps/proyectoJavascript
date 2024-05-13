@@ -1,6 +1,62 @@
+@import "./variables.css";
+
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 body {
-  font-size: 14px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--background-base);
+  gap: .5rem;
+  padding: .5rem;
 }
+
+.discover{
+  background-color: var(--background-elevated-base);
+  height: 100%;
+  width: 25%; 
+  border-radius: 1rem;
+}
+
+.discover h1{
+  padding: 2rem;
+  font-size: 2rem;
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+}
+
+
+.player{
+  height: 100%;
+  width: 50%;
+  background-color: var(--background-elevated-base);
+  border-radius: 1rem;
+}
+
+.player h3{
+ 
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+}
+
+.tracklist{
+  background-color: var(--background-elevated-base);
+  height: 100%;
+  width: 25%;
+  border-radius: 1rem;
+}
+
+.tracklist h2{
+  padding: 2rem;
+  font-size: 2rem;
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+}
+
+
+

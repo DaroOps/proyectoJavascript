@@ -1,0 +1,7 @@
+:root{
+    --background-base: #000000;
+    --background-elevated-base: #121212;
+    --title-color: #ffff;
+    --encore-body-font-stack: CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,sans-serif;
+    --encore-title-font-stack: CircularSpTitle,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,sans-serif;
+}
