@@ -7,7 +7,7 @@ export class PlaylistTracker extends HTMLElement{
     connectedCallback(){
         
         this.shadowRoot.innerHTML = /*html*/`
-        <link rel="stylesheet" href="/css/playlistTracker.css">
+        <link rel="stylesheet" href="../css/playlistTracker.css">
         <iframe class="playlist-iframe" src="https://open.spotify.com/embed/playlist/${this.id}" frameborder="0" allowtransparency="true"  allow="encrypted-media"></iframe>
        `
     }
