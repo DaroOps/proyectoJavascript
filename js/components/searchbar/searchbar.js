@@ -1,10 +1,13 @@
+import { getSearch } from "../../global.js";
+
 export class SearchBar extends HTMLElement {
   id;
   constructor(id) {
     super();
     this.attachShadow({ mode: "open" });
+    this.isSearching = false;
   }
-  connectedCallback() {
+  async connectedCallback() {
     this.shadowRoot.innerHTML = /*html*/ `
         <link rel="stylesheet" href="/css/searchbar.css">
         <div class="search-header">
@@ -25,16 +28,45 @@ export class SearchBar extends HTMLElement {
         </button>
         </div>
        `;
+
+      const input = this.shadowRoot.querySelector('.search-header__input');
+      const button = this.shadowRoot.querySelector('.search-header__button');
+      
+      button.addEventListener('click', () => {
+        this.handleSearch(input.value);
+      });
+
+      input.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+          this.handleSearch(input.value);
+        }
+      });
+     
+    await this.handleSearch()
   }
-  // static get observedAttributes(){
-  //     return ["uri"];
-  // }
-  // attributeChangedCallback(name,old,now){
-  //     let[nameUri, album, id] = now.split(":")
-  //     this.id = id;
-  // }
+
+  async handleSearch(query) 
+  {
+    if (this.isSearching){
+      return;
+    }
+
+    this.isSearching = true;
+
+    try {
+      console.log("Starting search: ", query);
+      
+      await new Promise (resolve => setTimeout(resolve, 2000));
+      console.log("Completed search: ", query);
+
+
+    } catch (error) {
+      console.error("Search Error: ", error);
+    }finally{
+      this.isSearching = false;
+    }
+
+  }
 }
 
-{
-  /* <iframe class="playlist-iframe" src="https://open.spotify.com/embed/playlist/${this.id}" frameborder="0" allowtransparency="true"  allow="encrypted-media"></iframe> */
-}
+//  await getSearch()
