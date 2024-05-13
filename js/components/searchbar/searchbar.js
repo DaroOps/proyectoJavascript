@@ -32,17 +32,17 @@ export class SearchBar extends HTMLElement {
       const input = this.shadowRoot.querySelector('.search-header__input');
       const button = this.shadowRoot.querySelector('.search-header__button');
       
-      button.addEventListener('click', () => {
+      button.addEventListener('click', async () => {
         this.handleSearch(input.value);
       });
 
-      input.addEventListener('keypress', (event) => {
+      input.addEventListener('keypress', async (event) => {
         if (event.key === 'Enter') {
-          this.handleSearch(input.value);
+          await this.handleSearch(input.value);
         }
       });
      
-    await this.handleSearch()
+    
   }
 
   async handleSearch(query) 
@@ -55,11 +55,8 @@ export class SearchBar extends HTMLElement {
 
     try {
       console.log("Starting search: ", query);
-      
-      await new Promise (resolve => setTimeout(resolve, 2000));
+      await getSearch(query)
       console.log("Completed search: ", query);
-
-
     } catch (error) {
       console.error("Search Error: ", error);
     }finally{
@@ -69,4 +66,3 @@ export class SearchBar extends HTMLElement {
   }
 }
 
-//  await getSearch()
