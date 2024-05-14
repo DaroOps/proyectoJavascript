@@ -36,12 +36,6 @@ eventBus.subscribe("trackSuggestions", (data) => {
 
 eventBus.subscribe("dataReceived", async (data) => {
   const idList = await getBentoAlbumIds(data);
-  // console.log("EXISTO!");
-  // console.log("EXISTO!", data);
-  // console.log("bento IDs", idList);
-
-  generateTrackCards(await getAlbumsTracks(idList), idList[0]);
-
   if (idList.length > 0) {
     try {
       const albums = await getAlbumsTracks(idList);
@@ -53,20 +47,15 @@ eventBus.subscribe("dataReceived", async (data) => {
     clearTracks();
   }
 });
-function hacerClicEnElementoAleatorio(tipoDeElemento) {
-    var elementos = document.getElementsByTagName(tipoDeElemento);
-    if (elementos.length > 0) {
-        var indiceAleatorio = Math.floor(Math.random() * elementos.length);
-        var elementoAleatorio = elementos[indiceAleatorio];
-        elementoAleatorio.click();
-    } else {
-        console.log("No se encontraron elementos del tipo especificado");
-    }
-}
 
-function onPageLoad() {
-    hacerClicEnElementoAleatorio("album-card");
-}
+eventBus.subscribe("albumClicked", async (data) => {
+  let playlistTrackerElement = document.querySelector("playlist-tracker");
+  console.log("clikced album via observer", data);
+  playlistTrackerElement.setAttribute("uri", `spotify:album:${data}`);
+});
 
-document.addEventListener("load", onPageLoad);
+// function onPageLoad() {
 
+// }
+
+// document.addEventListener("load", onPageLoad);

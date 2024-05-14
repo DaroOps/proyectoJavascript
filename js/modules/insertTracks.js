@@ -1,3 +1,5 @@
+import { eventBus } from "../global.js";
+
 const bentoFindeElement = document.querySelector("bento-finded");
 const tracksAsideElement = document.querySelector(".album-tracks");
 
@@ -6,15 +8,19 @@ export const clearTracks = () => {
 };
 
 export const updateTracks = (albums) => {
-  bentoFindeElement.addEventListener("albumClick", (event) => {
-    const albumId = event.detail.albumId;
-    console.log("AlbumId Clicked = ", albumId);
-    clearTracks();
-    const trackCards = generateTrackCards(albums, albumId);
-    if (trackCards) {
-      tracksAsideElement.appendChild(trackCards);
-    }
-  });
+    eventBus.subscribe("albumClicked", async (id) => {
+        console.log("sure im work in here too");
+        clearTracks();
+        const trackCards = generateTrackCards(albums, id);
+        if (trackCards) {
+        tracksAsideElement.appendChild(trackCards);
+        }
+    });
+//   bentoFindeElement.addEventListener("albumClick", (event) => {
+//     const albumId = event.detail.albumId;
+//     console.log("AlbumId Clicked = ", albumId);
+    
+//   });
 };
 
 export const generateTrackCards = (albums, albumId) => {

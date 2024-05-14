@@ -5,8 +5,8 @@ export class BentoFinded extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         eventBus.subscribe('dataReceived', this.render.bind(this));
-        window.addEventListener('load', this.onPageLoaded.bind(this));
-        firstAlbumCard
+        window.addEventListener('DOMContentLoaded', this.onPageLoaded.bind(this));
+        this.firstAlbumCard
     }
 
     connectedCallback() {
@@ -43,7 +43,7 @@ export class BentoFinded extends HTMLElement {
             this.shadowRoot.querySelector('.bento-grid').appendChild(fragment);
 
             const firstAlbumCard = this.shadowRoot.querySelector('album-card');
-            this.firstAlbumCard = firstAlbumCard
+            this.firstAlbumCard = this.shadowRoot.querySelector('album-card');
             if (firstAlbumCard) {
                 firstAlbumCard.click();
             }
@@ -62,12 +62,19 @@ export class BentoFinded extends HTMLElement {
         }
     }
 
-    handleAlbumClick(id) {
-        const event = new CustomEvent('albumClick', { detail: { albumId: id } });
-        this.dispatchEvent(event);
-    }
+    // handleAlbumClick(id) {
+    //     const event = new CustomEvent('albumClick', { detail: { albumId: id } });
+    //     this.dispatchEvent(event);
+    //     eventBus.publish('albumClicked', id);
+    // }
 
     onPageLoaded(){
-        this.firstAlbumCard?.click();
+        console.log("trying click again");
+        if (this.firstAlbumCard) {
+            console.log(this.firstAlbumCard);
+            this.firstAlbumCard?.click();
+        } else {
+            setTimeout(this.onPageLoaded.bind(this), 100);
+        }
     }
 }
