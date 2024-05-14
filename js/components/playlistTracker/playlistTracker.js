@@ -7,29 +7,30 @@ export class PlaylistTracker extends HTMLElement {
       super();
       this.attachShadow({ mode: "open" });
       eventBus.subscribe("albumClicked", this.render.bind(this))
-      this.id = id;
+      
     }
     
     connectedCallback() {
         this.render();
+        
+       
     }
     
     static get observedAttributes() {
-      return ['uri'];
+      return ['uri', 'id'];
     }
       
-    atrributeChangeCallback(name, oldValue, newValue){
+    attributeChangedCallback(name, oldValue, newValue){
         if(oldValue !== newValue){
-            this.render()
-            console.log("rerender");
-            // this.id = newValue.split(":").pop()
+            this.render(newValue)
+            // console.log("rerender", newValue);
         }
     }
   
-    render() {
+    render(id="5y6w2N9XrhP93lAZwfXmT8") {
       this.shadowRoot.innerHTML = `
-        <link rel="stylesheet" href="../css/playlistTracker.css">
-        <iframe class="playlist-iframe" src="https://open.spotify.com/embed/album/${this.id}" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <link rel="stylesheet" href="../css/playlistTracker.css">
+      <iframe class="playlist-iframe" src="https://open.spotify.com/embed/album/${id}" frameborder="0" allowtransparency="true"></iframe>
       `;
     }
   

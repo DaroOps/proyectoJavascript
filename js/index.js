@@ -49,9 +49,9 @@ eventBus.subscribe("dataReceived", async (data) => {
 });
 
 eventBus.subscribe("albumClicked", async (data) => {
-  let playlistTrackerElement = document.querySelector("playlist-tracker");
+  const playlistTrackerElement = document.querySelector("playlist-tracker");
   console.log("clikced album via observer", data);
-  playlistTrackerElement.setAttribute("uri", `spotify:album:${data}`);
+  playlistTrackerElement.setAttribute("uri", `${data}`);
 });
 
 // function onPageLoad() {
