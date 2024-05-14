@@ -8,6 +8,6 @@ import { getAlbumsTracks } from "./services/tracks/getAlbumsTracks.js"
 // modules
 import { getBentoAlbumIds } from "./modules/getBentoIds.js"
 import { insertSuggestions } from "./modules/insertSuggestions.js"
-import { clearTracks, updateTracks } from "./modules/insertTracks.js"
+import { clearTracks, updateTracks, generateTrackCards} from "./modules/insertTracks.js"
 
-export {eventBus, env ,getSearch, getSuggestions, insertSuggestions, getBentoAlbumIds, getAlbumsTracks, clearTracks, updateTracks}
+export {eventBus, env ,getSearch, getSuggestions, insertSuggestions, getBentoAlbumIds, getAlbumsTracks, clearTracks, updateTracks, generateTrackCards}

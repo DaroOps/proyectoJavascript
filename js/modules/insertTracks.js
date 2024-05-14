@@ -17,7 +17,7 @@ export const updateTracks = (albums) => {
   });
 };
 
-const generateTrackCards = (albums, albumId) => {
+export const generateTrackCards = (albums, albumId) => {
   console.log(albums);
   const fragment = document.createDocumentFragment()
   let selectedAlbum;
@@ -45,12 +45,3 @@ const generateTrackCards = (albums, albumId) => {
   console.log(fragment);
 };
 
-// ;
-// console.log(albums)
-// for (const album of albums) {
-//     console.log(`${album.id}: ${album} || ${albumId} `);
-//   if (album.id === albumId) {
-//
-//         //t;
-//     }
-// }
