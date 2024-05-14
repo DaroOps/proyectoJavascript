@@ -62,11 +62,11 @@ export class BentoFinded extends HTMLElement {
         }
     }
 
-    // handleAlbumClick(id) {
-    //     const event = new CustomEvent('albumClick', { detail: { albumId: id } });
-    //     this.dispatchEvent(event);
-    //     eventBus.publish('albumClicked', id);
-    // }
+    handleAlbumClick(id) {
+        // const event = new CustomEvent('albumClick', { detail: { albumId: id } });
+        // this.dispatchEvent(event);
+        eventBus.publish('albumClicked', id);
+    }
 
     onPageLoaded(){
         console.log("trying click again");
