@@ -4,13 +4,15 @@
 }
 
 .track-container {
-    padding: 0 1rem;
+    margin: 0;
+    padding: 0;
 }
 
 .track-item {
     padding: 0.5em;
     height: 100%;
     width: 100%;
+    overflow: hidden;
     border-radius: 1em;
     display: flex;
 }
@@ -33,6 +35,7 @@
   justify-content: center;
   margin: 0;
   padding: 0.5em;
+  overflow: hidden;
   font-family: var(--encore-title-font-stack);
 }
 
@@ -41,6 +44,9 @@
   font-weight: lighter;
   font-size: large;
   color: var(--title-color);
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow:clip;
 }
 
 .track-info > small {

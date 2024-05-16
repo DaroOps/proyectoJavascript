@@ -22,7 +22,9 @@
     color: white;
     color: var(--title-color);
     font-family: var(--encore-title-font-stack);
-  
+    overflow: hidden;
+    text-overflow:clip;
+    white-space: nowrap;
   }
   
   .item-playable-container > small{
@@ -31,7 +33,6 @@
     color: var(--small-color);
     color: var(--title-color);
     font-family: var(--encore-title-font-stack);
-  
   }
   
   .item-playable-container:hover{

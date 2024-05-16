@@ -1,4 +1,5 @@
 :root{
+    font-size: calc(1vw / 1vh);
     --background-base: #000000;
     --background-elevated-base: #121212;
     --title-color: #ffff;

@@ -7,24 +7,60 @@
 body {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 25% 1fr 25%;
+  grid-template-areas:"discover player tracklist";
   background-color: var(--background-base);
   gap: .5rem;
   padding: .5rem;
-  overflow-y: hidden;
 }
 
 .discover{
-  background-color: var(--background-elevated-base);
-  height: 100%;
-  width: 25%; 
   border-radius: 1rem;
+  overflow-y: hidden;
+  gap: .5rem;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.search-section{
+  border-radius: inherit;
+  height: auto;
+  background-color: var(--background-elevated-base);
+  padding: 1.5rem;
+}
+
+.grid-section {
+  background-color: var(--background-elevated-base);
+  height: 70%;
   overflow-y: auto;
+  border-radius: inherit;
+}
+
+.suggestions-area{
+  border-radius: inherit;
+  height: 22%;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0 1.5em;
+  background-color: var(--background-elevated-base);
+}
+.track-suggestions{
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.album-tracks{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 0 1em;
 }
 
 .discover h1{
-  padding: 2rem;
+  padding-bottom: 1.5rem;
   font-size: 2rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
@@ -32,15 +68,14 @@ body {
 
 
 .player{
-  height: 100%;
-  width: 50%;
   background-color: var(--background-elevated-base);
   border-radius: 1rem;
+  grid-area: player;
 }
 
 .player h3{
  
-  padding: 2rem;
+  padding: 1.5rem;
   font-size: 1.5rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
@@ -48,27 +83,42 @@ body {
 
 .tracklist{
   background-color: var(--background-elevated-base);
-  height: 100%;
-  width: 25%;
   border-radius: 1rem;
   overflow-y: auto;
+  grid-area: tracklist;
 }
 
 .tracklist h2{
-  padding: 2rem;
+  padding: 1.5rem;
   font-size: 2rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
 }
 
 .discover h4{
-  padding: 0 2rem;
+  padding:  1.5rem 1.5rem .5rem .5rem;
   font-size: 1.5rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
   
 }
 
+@media (max-width: 900px) {
 
+    body{
+      grid-template-columns: 1fr;
+      grid-template-rows: 25% 1fr 25%;
+      grid-template-areas:"discover player tracklist";
+    }
+
+    .grid-section {
+      height: 75%;
+    }
+
+    /* .search-section{
+      height: 25%;
+    } */
+
+}
 /* test component */
 
