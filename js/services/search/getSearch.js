@@ -11,7 +11,7 @@ const options = {
 };
 
 export const getSearch = async (query) => {
-    let searchQuery = `?q=${query}=albums&limit=4&numberOfTopResults=4`
+    let searchQuery = `?q=${query}=albums&limit=12&numberOfTopResults=4`
     let cacheUrl = `${url}${searchQuery}`
 
     const cachedResponse = await caches.match(cacheUrl);
