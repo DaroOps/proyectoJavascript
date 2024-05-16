@@ -43,7 +43,7 @@ body {
   height: 22%;
   overflow-y: auto;
   margin: 0;
-  padding: 0 1.5em;
+  padding: 0 1.5em 1.5em 1.5em;
   background-color: var(--background-elevated-base);
 }
 .track-suggestions{
@@ -56,7 +56,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  padding: 0 1em;
+  padding:  0 1em 1em 1em;
 }
 
 .discover h1{
@@ -71,6 +71,7 @@ body {
   background-color: var(--background-elevated-base);
   border-radius: 1rem;
   grid-area: player;
+  
 }
 
 .player h3{
@@ -79,6 +80,7 @@ body {
   font-size: 1.5rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
+  text-align: center;
 }
 
 .tracklist{

@@ -1,6 +1,7 @@
 import {
   AlbumCard,
   BentoFinded,
+  MusicPlayer,
   PlaylistTracker,
   SearchBar,
   TrackCard,
@@ -24,6 +25,7 @@ customElements.define("search-bar", SearchBar);
 customElements.define("bento-finded", BentoFinded);
 customElements.define("track-card", TrackCard);
 customElements.define("album-card", AlbumCard);
+customElements.define("music-player", MusicPlayer)
 
 getSearch("nightmare");
 
@@ -48,10 +50,19 @@ eventBus.subscribe("dataReceived", async (data) => {
   }
 });
 
-eventBus.subscribe("albumClicked", async (data) => {
-  const playlistTrackerElement = document.querySelector("playlist-tracker");
-  console.log("clikced album via observer", data);
-  playlistTrackerElement.setAttribute("uri", `${data}`);
+// eventBus.subscribe("albumClicked", async (data) => {
+//   const playlistTrackerElement = document.querySelector("playlist-tracker");
+//   console.log("clikced album via observer", data);
+//   playlistTrackerElement.setAttribute("uri", `${data}`);
+// });
+
+eventBus.subscribe('trackClicked', (data) => {
+  const musicPlayerElement = document.querySelector("music-player");
+
+  musicPlayerElement.setAttribute("track-name", `${data.track.name}`);
+  musicPlayerElement.setAttribute("track-artist", `${data.track.artists[0].name}`);
+  musicPlayerElement.setAttribute("img-url", `${data.img}`);
+  musicPlayerElement.setAttribute("audio-url", `${data.track.preview_url}`);
 });
 
 // function onPageLoad() {

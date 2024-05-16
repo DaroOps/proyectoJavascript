@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Dumb Clone</title>
     <script type="module" src="./js/index.js"></script>
+    <!-- this line is IMPORTANT for display the icons of the player! -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -26,8 +28,12 @@
 
     </main>
     <section class="player">
-        <!-- <h3>Now Playing</h1> -->
-        <playlist-tracker class="playlist-tracker" uri="spotify:album:7vfuTRXIAYJz5Uc8SddnTr"></playlist-tracker>
+        <h3>Now Playing</h1>
+        <!-- <playlist-tracker class="playlist-tracker" uri="spotify:album:7vfuTRXIAYJz5Uc8SddnTr"></playlist-tracker> -->
+        
+        <music-player></music-player>
+        
+
     </section>
     <aside class="tracklist">
         <h2>Tracklist</h2>
