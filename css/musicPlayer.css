@@ -39,11 +39,32 @@
 	color: var(--small-color);
 }
 
+.progress-container{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	width: 100%;
+	gap: 1em;
+	padding: 0 10%;
+}
+
+.progress-container >span{
+	content: "    ";
+	aspect-ratio: auto;
+	margin-top: .22rem;
+	padding: 0;
+	vertical-align: middle;
+	font-family: var(--encore-title-font-stack);
+	color: var(--small-color);
+
+}
+
 .control {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	gap: 3em;
+	justify-content: space-evenly;
+	
 }
 
 .control .btn {
@@ -57,7 +78,7 @@
 }
 
 .btn.active {
-	color: var(--title-color);
+	color: var(--acent-color);
 }
 
 .control .btn:hover {
@@ -100,9 +121,9 @@
 .progress {
 	-webkit-appearance: none;
 	margin: 0;
-	width: 80%;
+	width: 100%;
 	border-radius: 1rem;
-	height: 0.5rem;
+	height: 0.4rem;
 	background-color: var(--small-color);
 }
 
@@ -116,7 +137,7 @@
 	border-radius: 1rem;
 	cursor: pointer;
 	-webkit-appearance: none;
-	height: 0.5rem;
+	height: 0.4rem;
 
 }
 

@@ -1,35 +1,38 @@
-export class MusicPlayer extends HTMLElement{
-    constructor(){
+import {formatTime} from "../../global.js"
+
+export class MusicPlayer extends HTMLElement {
+    constructor() {
         super();
-        this.attachShadow({mode: "open"});
-        this.isPlaying= false;
-        this.isRandom= false;
-        this.isRepeated= false;
+        this.attachShadow({ mode: "open" });
+        this.isPlaying = false;
+        this.isRandom = false;
+        this.isRepeated = false;
         this.audioElement;
         // eventBus.subscribe('trackClicked', this.render.bind(this));
     }
 
-    static get observedAttributes(){
+    static get observedAttributes() {
         return ['track-name', 'track-artist', 'img-url', 'audio-url']
     }
 
-    connectedCallback(){
+    connectedCallback() {
         this.render()
-       
+
     }
 
-    attributeChangedCallback(name, oldValue, newValue){
-        if(oldValue !== newValue){
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue !== newValue) {
             this.render();
-            
+
         }
     }
 
-    render(){
-        const trackName=this.getAttribute('track-name') || 'trackName';
-        const trackArtist=this.getAttribute('track-artist') || 'trackArtist';
-        const imgUrl=this.getAttribute('img-url') || 'https://i.scdn.co/image/ab67616d00001e02fa258529452f4ed34cc961b1';
-        const trackAudio=this.getAttribute('audio-url') || 'https://p.scdn.co/mp3-preview/26d19b78d0470a426e3c5c80a0a1ec215f48521e?cid=f6a40776580943a7bc5173125a1e8832';
+    render() {
+        this.isPlaying = false
+        const trackName = this.getAttribute('track-name') || 'trackName';
+        const trackArtist = this.getAttribute('track-artist') || 'trackArtist';
+        const imgUrl = this.getAttribute('img-url') || 'https://i.scdn.co/image/ab67616d00001e02fa258529452f4ed34cc961b1';
+        const trackAudio = this.getAttribute('audio-url') || 'https://p.scdn.co/mp3-preview/26d19b78d0470a426e3c5c80a0a1ec215f48521e?cid=f6a40776580943a7bc5173125a1e8832';
 
         this.shadowRoot.innerHTML = /*html*/`
         <link rel="stylesheet" href="../css/musicPlayer.css">
@@ -43,8 +46,13 @@ export class MusicPlayer extends HTMLElement{
                 <small>${trackArtist}</small>
             </div>
 
-            <input id="progress" class="progress" type="range" value="0" step="0.1" min="0" max="100" />
-            <audio id="audio" src=${trackAudio}></audio>
+            <div class="progress-container">
+                <span id="progress-min">-:--</span>
+                <input id="progress" class="progress" type="range" value="0" step="0.1" min="0" max="100" />
+                <audio id="audio" src=${trackAudio}></audio>
+                <span id="progress-max">-:--</span>
+            </div>
+                
             
             <div class="control">
 				<div class="btn btn-repeat">
@@ -67,37 +75,71 @@ export class MusicPlayer extends HTMLElement{
         </div>
        `;
 
-       this.managAddEvent();
+        this.managAddEvent();
     }
 
-    managAddEvent(){       
+    managAddEvent() {
         const btnPlay = this.shadowRoot.querySelector('.btn.btn-toggle-play')
         const progress = this.shadowRoot.querySelector(".progress");
         const audio = this.shadowRoot.querySelector('audio');
+        const progressMin = this.shadowRoot.querySelector("#progress-min");
+        const progressMax = this.shadowRoot.querySelector("#progress-max");
+        const btnLoop = this.shadowRoot.querySelector(".btn.btn-repeat");
 
-        btnPlay.addEventListener('click', ()=>{
-     
-     
-            this.isPlaying = !this.isPlaying
-                 if(this.isPlaying) {
-                     btnPlay.classList.add('playing') 
-                     audio.play()
-                 }else{
-                     btnPlay.classList.remove('playing')
-                     audio.pause()
-                 }
-     
-            audio.ontimeupdate = function() {
-             const progressPercent = Math.floor(
-               (this.currentTime / audio.duration) * 100
-             );
-             progress.value = progressPercent;
-           };
+       
+
+        progress.addEventListener("input", () => {
+            const seekTime = audio.duration * (progress.value / 100);
+            audio.currentTime = seekTime;
+        });
+
+        
+        audio.ontimeupdate = function () {
+            const progressPercent = Math.floor(
+                (this.currentTime / audio.duration) * 100
+            );
             
+            progress.value = progressPercent;
+            progressMin.textContent = formatTime(this.currentTime)
+        };
+
+        audio.addEventListener('loadedmetadata', () => {
+           progressMin.textContent = "0:00"
+           progressMax.textContent = formatTime(audio.duration)
+        });
+        
+        btnPlay.addEventListener('click', () => {
+
+            this.isPlaying = !this.isPlaying
+            if (this.isPlaying) {
+                btnPlay.classList.add('playing')
+                audio.play()
+            } else {
+                btnPlay.classList.remove('playing')
+                audio.pause()
+            }
+
             console.log("isPlaying", this.isPlaying);
         })
+
+        btnLoop.addEventListener('click', () => {
+
+
+            this.isRepeated = !this.isRepeated
+            if (this.isRepeated) {
+                btnLoop.classList.add('active')
+                audio.loop = this.isRepeated;
+            } else {
+                btnLoop.classList.remove('active')
+                audio.loop = this.isRepeated;
+            }
+
+           
+
+            console.log("isLoop", this.isRepeated);
+        })
     }
-    
+
 }
 
 

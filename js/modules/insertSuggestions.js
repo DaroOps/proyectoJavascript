@@ -1,3 +1,5 @@
+import { eventBus } from "../global.js";
+
 export const insertSuggestions = (data)=>{
     if (data){
         const target = document.querySelector('.track-suggestions')
@@ -11,9 +13,17 @@ export const insertSuggestions = (data)=>{
             trackCard.setAttribute('track-artist', track.artists[0]?.name);
             trackCard.setAttribute('img-url', track.album.images[0]?.url)
 
+            trackCard.addEventListener("click", () => {
+                handleClickCard(track);
+              });
+
             fragment.appendChild(trackCard);
         });
 
         target.appendChild(fragment)
     }
 }
+
+const handleClickCard = (track)=>{
+    eventBus.publish('suggestionClicked', track);
+  }

@@ -4,18 +4,19 @@
   box-sizing: border-box;
   margin: 0;
 }
+
 body {
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 25% 1fr 25%;
-  grid-template-areas:"discover player tracklist";
+  grid-template-areas: "discover player tracklist";
   background-color: var(--background-base);
   gap: .5rem;
   padding: .5rem;
 }
 
-.discover{
+.discover {
   border-radius: 1rem;
   overflow-y: hidden;
   gap: .5rem;
@@ -24,7 +25,7 @@ body {
 
 }
 
-.search-section{
+.search-section {
   border-radius: inherit;
   height: auto;
   background-color: var(--background-elevated-base);
@@ -38,7 +39,7 @@ body {
   border-radius: inherit;
 }
 
-.suggestions-area{
+.suggestions-area {
   border-radius: inherit;
   height: 22%;
   overflow-y: auto;
@@ -46,36 +47,38 @@ body {
   padding: 0 1.5em 1.5em 1.5em;
   background-color: var(--background-elevated-base);
 }
-.track-suggestions{
+
+.track-suggestions {
   display: flex;
   flex-direction: column;
   gap: .5em;
 }
 
-.album-tracks{
+.album-tracks {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  padding:  0 1em 1em 1em;
+  padding: 0 1em 1em 1em;
 }
 
-.discover h1{
+.discover h1 {
   padding-bottom: 1.5rem;
   font-size: 2rem;
+  text-wrap: nowrap;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
 }
 
 
-.player{
+.player {
   background-color: var(--background-elevated-base);
   border-radius: 1rem;
   grid-area: player;
-  
+
 }
 
-.player h3{
- 
+.player h3 {
+
   padding: 1.5rem;
   font-size: 1.5rem;
   color: var(--title-color);
@@ -83,44 +86,102 @@ body {
   text-align: center;
 }
 
-.tracklist{
+.tracklist {
   background-color: var(--background-elevated-base);
   border-radius: 1rem;
   overflow-y: auto;
   grid-area: tracklist;
 }
 
-.tracklist h2{
+.tracklist h2 {
   padding: 1.5rem;
   font-size: 2rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
 }
 
-.discover h4{
-  padding:  1.5rem 1.5rem .5rem .5rem;
+.discover h4 {
+  padding: 1.5rem 1.5rem .5rem .5rem;
   font-size: 1.5rem;
   color: var(--title-color);
   font-family: var(--encore-title-font-stack);
-  
+
+}
+
+.view-changer {
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--title-color);
+  border-top: 2px solid var(--background-elevated-base);
+}
+
+.view-changer>p {
+  cursor: pointer;
 }
 
 @media (max-width: 900px) {
 
-    body{
-      grid-template-columns: 1fr;
-      grid-template-rows: 25% 1fr 25%;
-      grid-template-areas:"discover player tracklist";
-    }
+  body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100dvh;
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 100%;
+    grid-template-areas: "discover player tracklist views"; */
+  }
 
-    .grid-section {
-      height: 75%;
-    }
+  .search-section {
+    height: auto;
+  }
 
-    /* .search-section{
+  .grid-section {
+    height: auto;
+  }
+
+  .suggestions-area {
+    height: auto;
+  }
+
+  .view-changer {
+    display: flex;
+    height: 10%;
+  }
+
+  .player {
+    display: none;
+  }
+
+  .tracklist {
+    display: none;
+  }
+
+  .discover {
+    display: none;
+  }
+
+  .discover.active {
+    display: inherit;
+    height: 100%;
+  }
+
+  .tracklist.active {
+    display: block;
+    height: 100%;
+  }
+
+  .player.active {
+    display: block;
+    height: 100%;
+  }
+
+
+  /* .search-section{
       height: 25%;
     } */
 
 }
-/* test component */
 
+/* test component */

@@ -14,6 +14,7 @@ import {
   getBentoAlbumIds,
   getSearch,
   getSuggestions,
+  initMobile,
   insertSuggestions,
   updateTracks,
 } from "./global.js";
@@ -26,6 +27,23 @@ customElements.define("bento-finded", BentoFinded);
 customElements.define("track-card", TrackCard);
 customElements.define("album-card", AlbumCard);
 customElements.define("music-player", MusicPlayer)
+
+const indexLoaderManager = () => {
+  if (window.innerWidth < 900) {
+    console.log("ON LOAD MOBILE VERSION");
+    initMobile()
+  }
+}
+
+const manageResize = () => {
+  if (window.innerWidth < 900) {
+    initMobile()
+  }
+}
+
+window.onload = indexLoaderManager
+window.onresize = manageResize
+
 
 getSearch("nightmare");
 
@@ -58,12 +76,21 @@ eventBus.subscribe("dataReceived", async (data) => {
 
 eventBus.subscribe('trackClicked', (data) => {
   const musicPlayerElement = document.querySelector("music-player");
-
   musicPlayerElement.setAttribute("track-name", `${data.track.name}`);
   musicPlayerElement.setAttribute("track-artist", `${data.track.artists[0].name}`);
   musicPlayerElement.setAttribute("img-url", `${data.img}`);
   musicPlayerElement.setAttribute("audio-url", `${data.track.preview_url}`);
 });
+
+eventBus.subscribe('suggestionClicked', (track) => {
+  const musicPlayerElement = document.querySelector("music-player");
+  musicPlayerElement.setAttribute("track-name", `${track.name}`);
+  musicPlayerElement.setAttribute("track-artist", `${track.artists[0].name}`);
+  musicPlayerElement.setAttribute("img-url", `${track.album.images[0].url}`);
+  musicPlayerElement.setAttribute("audio-url", `${track.preview_url}`);
+});
+
+
 
 // function onPageLoad() {
 
