@@ -1,6 +1,5 @@
 import { eventBus } from "../global.js";
 
-const bentoFindeElement = document.querySelector("bento-finded");
 const tracksAsideElement = document.querySelector(".album-tracks");
 
 export const clearTracks = () => {
@@ -9,7 +8,7 @@ export const clearTracks = () => {
 
 export const updateTracks = (albums) => {
   eventBus.subscribe("albumClicked", async (id) => {
-    console.log("sure im work in here too");
+    // console.log("sure im work in here too", id);
     clearTracks();
     const trackCards = generateTrackCards(albums, id);
     if (trackCards) {
@@ -19,7 +18,7 @@ export const updateTracks = (albums) => {
 };
 
 export const generateTrackCards = (albums, albumId) => {
-  console.log(albums);
+  // console.log(albums);
   const fragment = document.createDocumentFragment();
   let selectedAlbum;
   albums.forEach((album) => {
@@ -42,14 +41,16 @@ export const generateTrackCards = (albums, albumId) => {
     trackCard.addEventListener("click", () => {
       handleClickCard(track, selectedAlbum.images?.[0]?.url);//here im passing the whole track for the music player
     });
-
+    
     fragment.appendChild(trackCard);
   });
 
+  // console.log(fragment);
+  fragment.querySelector('track-card').click()
+
   return fragment;
-  console.log(fragment);
 };
 
-const handleClickCard = (track, img)=>{
-  eventBus.publish('trackClicked', {track, img: img});
+const handleClickCard = (track, img) => {
+  eventBus.publish('trackClicked', { track, img: img });
 }

@@ -13,10 +13,13 @@ import {
   getBentoAlbumIds,
   getSearch,
   getSuggestions,
+  handleTrackChange,
   initMobile,
   insertSuggestions,
   updateTracks,
 } from "./global.js";
+
+import './modules/handleTrackChange.js'
 
 // import {getSearch} from "./services/search/getSearch.js";
 
@@ -26,9 +29,10 @@ customElements.define("track-card", TrackCard);
 customElements.define("album-card", AlbumCard);
 customElements.define("music-player", MusicPlayer)
 
+//#region mobile & general init
 const indexLoaderManager = () => {
   if (window.innerWidth < 900) {
-    console.log("ON LOAD MOBILE VERSION");
+    // console.log("ON LOAD MOBILE VERSION");
     initMobile()
   }
 }
@@ -38,6 +42,7 @@ const manageResize = () => {
     initMobile()
   }
 }
+//#endregion
 
 window.onload = indexLoaderManager
 window.onresize = manageResize
@@ -48,7 +53,7 @@ getSearch("nightmare");
 getSuggestions();
 
 eventBus.subscribe("trackSuggestions", (data) => {
-  console.log(data);
+  // console.log(data);
   insertSuggestions(data);
 });
 
@@ -65,12 +70,6 @@ eventBus.subscribe("dataReceived", async (data) => {
     clearTracks();
   }
 });
-
-// eventBus.subscribe("albumClicked", async (data) => {
-//   const playlistTrackerElement = document.querySelector("playlist-tracker");
-//   console.log("clikced album via observer", data);
-//   playlistTrackerElement.setAttribute("uri", `${data}`);
-// });
 
 eventBus.subscribe('trackClicked', (data) => {
   const musicPlayerElement = document.querySelector("music-player");
@@ -89,9 +88,13 @@ eventBus.subscribe('suggestionClicked', (track) => {
 });
 
 
+eventBus.subscribe('nextTrack', () => handleTrackChange('next'));
+eventBus.subscribe('prevTrack', () => handleTrackChange('prev'));
+eventBus.subscribe('randTrack', () => handleTrackChange('rand'));
 
-// function onPageLoad() {
 
-// }
+window.addEventListener('load', addmeh());
 
-// document.addEventListener("load", onPageLoad);
+function addmeh(){
+  eventBus.publish('contentFull', null)
+}

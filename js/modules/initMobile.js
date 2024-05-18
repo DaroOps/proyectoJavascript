@@ -14,7 +14,7 @@ export const initMobile = () => {
     buttonList.addEventListener("click", activeTracklistView)
     
     
-    activePlayerView()
+    activeDiscoverView()
 }
 
 

@@ -5,6 +5,7 @@
     --title-color: #ffff;
     --small-color: #727272;
     --acent-color: #1db954;
+    --acent-color-hover:hsla(141, 73%, 42%, 0.71);
     --hover-color: hsla(0,0%,100%,.1);
     --encore-body-font-stack: CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,sans-serif;
     --encore-title-font-stack: CircularSpTitle,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,sans-serif;

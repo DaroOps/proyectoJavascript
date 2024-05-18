@@ -104,10 +104,6 @@
 	font-size: 18px;
 }
 
-.control .btn:active {
-	color: var(--title-color);
-}
-
 .btn.active {
 	color: var(--acent-color);
 }
@@ -115,6 +111,14 @@
 .control .btn:hover {
 	cursor: pointer;
 	color: var(--title-color);
+}
+
+.control .btn.active:hover{
+	color:  var(--acent-color-hover);
+}
+
+.control .btn:active:hover{
+	color: var(--acent-color);
 }
 
 .control .btn-toggle-play {

@@ -54,11 +54,11 @@ export class SearchBar extends HTMLElement {
     this.isSearching = true;
 
     try {
-      console.log("Starting search: ", query);
+      // console.log("Starting search: ", query);
       await getSearch(query)
-      console.log("Completed search: ", query);
+      // console.log("Completed search: ", query);
     } catch (error) {
-      console.error("Search Error: ", error);
+      // console.error("Search Error: ", error);
     }finally{
       this.isSearching = false;
     }
