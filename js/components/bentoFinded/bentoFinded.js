@@ -5,7 +5,7 @@ export class BentoFinded extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
         eventBus.subscribe('dataReceived', this.render.bind(this));
-        window.addEventListener('DOMContentLoaded', this.onPageLoaded.bind(this));
+        // eventBus.subscribe('dataReceived', this.onPageLoaded.bind(this));
         this.firstAlbumCard
     }
 

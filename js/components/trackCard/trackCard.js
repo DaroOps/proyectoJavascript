@@ -19,15 +19,17 @@ export class TrackCard extends HTMLElement{
     }
 
     render(){
-        const trackName=this.getAttribute('track-name') || 'trackName';
-        const trackArtist=this.getAttribute('track-artist') || 'trackArtist';
-        const imgUrl=this.getAttribute('img-url') || 'https://i.scdn.co/image/ab67616d00001e02fa258529452f4ed34cc961b1';
+        const trackName=this.getAttribute('track-name') || '';
+        const trackArtist=this.getAttribute('track-artist') || '';
+        const imgUrl=this.getAttribute('img-url');
 
         this.shadowRoot.innerHTML = /*html*/`
         <link rel="stylesheet" href="../css/trackCard.css">
         <div class="track-container">
             <div class="track-item">
-                <img src="${imgUrl}" alt="">
+                <div class="img-container skeleton">
+                    <img src="${imgUrl}" alt="">
+                </div>
                 <div class="track-info">
                     <p>${trackName}</p>
                     <small>${trackArtist}</small>
@@ -35,6 +37,12 @@ export class TrackCard extends HTMLElement{
             </div>
         </div>
        `;
+
+        const imageContainer = this.shadowRoot.querySelector('.img-container');
+
+        imageContainer.querySelector('img').addEventListener('load', ()=>{
+        imageContainer.classList.remove('skeleton');
+       })
     }
 }
 

@@ -19,18 +19,26 @@ export class AlbumCard extends HTMLElement{
     }
 
     render(){
-        const itemName = this.getAttribute('item-name' )|| 'Item Name';
-        const itemCategory = this.getAttribute('item-category') || 'Item Category'; 
-        const imgUrl = this.getAttribute('img-url') || 'https://i.scdn.co/image/ab67616d00001e02fa258529452f4ed34cc961b1';
+        const itemName = this.getAttribute('item-name' )|| '';
+        const itemCategory = this.getAttribute('item-category') || ''; 
+        const imgUrl = this.getAttribute('img-url') ;
         
         this.shadowRoot.innerHTML = /*html*/`
             <link rel="stylesheet" href="../css/albumCard.css">
             <div class="item-playable-container">
-                    <img src="${imgUrl}" alt="img">
+                    <div class="img-container skeleton">
+                        <img src="${imgUrl}" alt="">
+                    </div>
                     <p>${itemName}</p>
                     <small>${itemCategory}</small>
             </div>
        `;
+
+       const imageContainer = this.shadowRoot.querySelector('.img-container');
+
+        imageContainer.querySelector('img').addEventListener('load', ()=>{
+         imageContainer.classList.remove('skeleton');
+        })
     }
 
 }

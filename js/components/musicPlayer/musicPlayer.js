@@ -29,20 +29,22 @@ export class MusicPlayer extends HTMLElement {
 
     render() {
         this.isPlaying = false
-        const trackName = this.getAttribute('track-name') || 'trackName';
-        const trackArtist = this.getAttribute('track-artist') || 'trackArtist';
-        const imgUrl = this.getAttribute('img-url') || 'https://i.scdn.co/image/ab67616d00001e02fa258529452f4ed34cc961b1';
-        const trackAudio = this.getAttribute('audio-url') || 'https://p.scdn.co/mp3-preview/26d19b78d0470a426e3c5c80a0a1ec215f48521e?cid=f6a40776580943a7bc5173125a1e8832';
+        const trackName = this.getAttribute('track-name') || "";
+        const trackArtist = this.getAttribute('track-artist') || "";
+        const imgUrl = this.getAttribute('img-url') ;
+        const trackAudio = this.getAttribute('audio-url');
 
         this.shadowRoot.innerHTML = /*html*/`
         <link rel="stylesheet" href="../css/musicPlayer.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 
         <div class="music-player">
-            <img src="${imgUrl}" alt="track">
+            <div class="img-container skeleton">
+                <img src="${imgUrl}" alt="">
+            </div>
 
             <div class="player-track-info">
-                <strong>${trackName}</strong>
+                <strong >${trackName}</strong>
                 <small>${trackArtist}</small>
             </div>
 
@@ -74,6 +76,12 @@ export class MusicPlayer extends HTMLElement {
 			</div>
         </div>
        `;
+
+       const imageContainer = this.shadowRoot.querySelector('.img-container');
+
+        imageContainer.querySelector('img').addEventListener('load', ()=>{
+         imageContainer.classList.remove('skeleton');
+        })
 
         this.managAddEvent();
     }
@@ -141,6 +149,4 @@ export class MusicPlayer extends HTMLElement {
     }
 
 }
-
-
 

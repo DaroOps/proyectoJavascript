@@ -6,6 +6,8 @@ export const insertSuggestions = (data)=>{
         const tracks = data.tracks
         const fragment = document.createDocumentFragment();
 
+        target.innerHTML = ''
+
         tracks.forEach(track => {
             const trackCard = document.createElement('track-card');
             

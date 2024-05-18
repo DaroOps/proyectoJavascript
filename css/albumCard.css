@@ -1,42 +1,83 @@
-.item-playable-container  *{
-    margin: 0;
-    box-sizing: border-box;
+.item-playable-container * {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.item-playable-container{
-    border-radius: 1rem;
-    padding: 1em;
-  }
-  
-  .item-playable-container > img{
-      border-radius: 1rem;
-      width: 100%;
-      height: auto;
-      box-shadow: 0px 0px 30px #0000;
-  }
-  
-  .item-playable-container > p{
-    margin: 0;
-    padding: .5rem .5rem;
-    font-weight: bold;
-    color: white;
-    color: var(--title-color);
-    font-family: var(--encore-title-font-stack);
-    overflow: hidden;
-    text-overflow:clip;
-    white-space: nowrap;
-  }
-  
-  .item-playable-container > small{
-    margin: 0;
-    padding: 0 .5rem;
-    color: var(--small-color);
-    color: var(--title-color);
-    font-family: var(--encore-title-font-stack);
-  }
-  
-  .item-playable-container:hover{
-    background-color: var(--hover-color);
-    cursor: pointer;
-  }
-  
+.item-playable-container {
+  border-radius: 1rem;
+  padding: 1em;
+}
+
+.img-container{
+  aspect-ratio: 1/1;
+  width: 100%;
+  border-radius: 1rem;
+  height: auto;
+  box-shadow: 0px 0px 30px #0000;
+}
+
+.img-container > img {
+  border-radius: 1rem;
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 30px #0000;
+}
+
+.item-playable-container>p:empty{
+  color: transparent;
+	animation: skeleton-loading 1s linear infinite alternate;
+  margin: 1rem .5rem 0.25rem .5rem;
+  height: 1em;
+	border-radius: .25rem;
+}
+
+.item-playable-container>p:not(:empty){
+  margin: 0;
+  padding:.5rem;
+  font-weight: bold;
+  color: white;
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.item-playable-container>small:not(:empty) {
+  margin: 0;
+  padding: 0 .5rem;
+  color: var(--small-color);
+  color: var(--title-color);
+  font-family: var(--encore-title-font-stack);
+}
+
+.item-playable-container>small:empty {
+	animation: skeleton-loading 1s linear infinite alternate;
+  margin: 0.5rem;
+  width: 70%;
+  display: inline-block;
+  height: .8rem;
+	border-radius: .25rem;
+
+}
+
+.item-playable-container:hover {
+  background-color: var(--hover-color);
+  cursor: pointer;
+}
+
+.skeleton {
+	animation: skeleton-loading 1s linear infinite alternate;
+	display: inherit;
+	border-radius: inherit;
+}
+
+@keyframes skeleton-loading {
+	0% {
+		background-color: hsla(200, 20%, 70%, 0.1);
+	}
+
+	100% {
+		background-color: hsla(200, 20%, 80%, 0.15);
+	}
+}
