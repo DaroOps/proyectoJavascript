@@ -2,7 +2,6 @@ import {
   AlbumCard,
   BentoFinded,
   MusicPlayer,
-  PlaylistTracker,
   SearchBar,
   TrackCard,
 } from "./components/components.js";
@@ -21,7 +20,6 @@ import {
 
 // import {getSearch} from "./services/search/getSearch.js";
 
-customElements.define("playlist-tracker", PlaylistTracker);
 customElements.define("search-bar", SearchBar);
 customElements.define("bento-finded", BentoFinded);
 customElements.define("track-card", TrackCard);

@@ -16,11 +16,6 @@ export const updateTracks = (albums) => {
       tracksAsideElement.appendChild(trackCards);
     }
   });
-  //   bentoFindeElement.addEventListener("albumClick", (event) => {
-  //     const albumId = event.detail.albumId;
-  //     console.log("AlbumId Clicked = ", albumId);
-
-  //   });
 };
 
 export const generateTrackCards = (albums, albumId) => {
