@@ -24,7 +24,7 @@ export class AlbumCard extends HTMLElement{
         const imgUrl = this.getAttribute('img-url') ;
         
         this.shadowRoot.innerHTML = /*html*/`
-            <link rel="stylesheet" href="../css/albumCard.css">
+            <link rel="stylesheet" href="css/albumCard.css">
             <div class="item-playable-container">
                     <div class="img-container skeleton">
                         <img src="${imgUrl}" alt="">

@@ -23,7 +23,7 @@ export class BentoFinded extends HTMLElement {
             const fragment = document.createDocumentFragment();
 
             this.shadowRoot.innerHTML = /*html*/`
-                <link rel="stylesheet" href="../css/bentoFinded.css">
+                <link rel="stylesheet" href="css/bentoFinded.css">
                 <div class="bento-finded">
                     <section class="bento-grid"></section>
                 </div>

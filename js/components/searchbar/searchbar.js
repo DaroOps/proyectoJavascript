@@ -9,7 +9,7 @@ export class SearchBar extends HTMLElement {
   }
   async connectedCallback() {
     this.shadowRoot.innerHTML = /*html*/ `
-        <link rel="stylesheet" href="/css/searchbar.css">
+        <link rel="stylesheet" href="css/searchbar.css">
         <div class="search-header">
         <input placeholder="Search" class="search-header__input" type="text" />
         <button class="search-header__button">

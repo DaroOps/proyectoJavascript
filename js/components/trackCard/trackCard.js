@@ -24,7 +24,7 @@ export class TrackCard extends HTMLElement{
         const imgUrl=this.getAttribute('img-url');
 
         this.shadowRoot.innerHTML = /*html*/`
-        <link rel="stylesheet" href="../css/trackCard.css">
+        <link rel="stylesheet" href="css/trackCard.css">
         <div class="track-container">
             <div class="track-item">
                 <div class="img-container skeleton">
